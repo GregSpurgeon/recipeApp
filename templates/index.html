@@ -1,0 +1,9 @@
+<h1> Recipe Box </h1>
+
+<ul>
+  {% for recipe in recipes %}
+  <li>
+    <strong><a href="/recipes/{{ recipe.id }}">{{ recipe.title }}</a></strong>
+  </li>
+  {% endfor %}
+</ul>
