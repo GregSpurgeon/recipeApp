@@ -4,9 +4,6 @@ from recipe_app.forms import AddRecipeForm, AddAuthorForm, LoginForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.contrib.admin.views.decorators import staff_member_required
-
-
 # Create your views here.
 
 
@@ -16,7 +13,6 @@ def home_page(request):
                   {"recipes": Recipe.objects.all()})
 
 
-@login_required
 def recipe_page(request, recipe_id):
     my_recipe = Recipe.objects.get(id=recipe_id)
     return render(request, 'recipe_detail.html', {"recipe": my_recipe})
@@ -43,14 +39,12 @@ def add_recipe(request):
     return render(request, html, {'form': form})
 
 
-@login_required
 def author_detail(request, author_id):
     my_author = Author.objects.get(id=author_id)
     return render(request, "author_detail.html", {"author": my_author})
 
 
 @login_required
-# @staff_member_required
 def add_author(request):
     if request.user.is_staff:
         html = "author_add_form.html"
