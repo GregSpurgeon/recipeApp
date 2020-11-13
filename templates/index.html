@@ -1,5 +1,9 @@
 <h1> Recipe Box </h1>
 
+{% if request.user.is_authenticated %}
+  <h3> hello {{ request.user.username }}</h3>
+{% endif %}
+
 <ul>
   {% for recipe in recipes %}
   <li>
@@ -8,5 +12,8 @@
   {% endfor %}
 </ul>
 
+
 <h3><a href='/addrecipe/'>Create a new recipe</a></h3>
 <h3>New Chef? register<a href="/addauthor"> here</a></h3>
+
+<h5><a href='/logout/'>Logout</a></h5>
