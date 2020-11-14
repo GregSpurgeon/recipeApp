@@ -74,10 +74,14 @@ def login_view(request):
         form = LoginForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            user = authenticate(request, username=data['username'], password=data['password'])
+            user = authenticate(request,
+                                username=data['username'],
+                                password=data['password'])
             if user:
                 login(request, user)
-                return HttpResponseRedirect(request.GET.get('next', reverse('home_page')))
+                return HttpResponseRedirect(
+                    request.GET.get('next',
+                                    reverse('home_page')))
     form = LoginForm()
     return render(request, 'author_add_form.html', {"form": form})
 
